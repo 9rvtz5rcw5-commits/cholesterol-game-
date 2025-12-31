@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-TW"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;血管保衛戰：高血脂衛教遊戲&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: "Microsoft JhengHei", sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #f0f8ff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.game-box {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 10px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 10px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="game-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt; 血管保衛戰&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p id="question"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="answers"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p id="score"&gt;血管健康值：100&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let score = 100;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let current = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const quiz = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "哪一種膽固醇最容易造成血管粥狀硬化？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["HDL-C", "LDL-C"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 1</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "哪一種膽固醇可以幫忙清除多餘膽固醇？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["LDL-C", "HDL-C"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 1</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "以下哪一種食物有助於降低血脂？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["甜甜圈", "深海魚（Omega-3）"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 1</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "哪一個行為有助於預防高血脂？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["每天適度運動", "久坐不動"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 0</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "吸菸對血管的影響是？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["破壞血管，增加膽固醇堆積", "對血管沒有影響"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 0</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>q: "一般年輕人建議多久檢查一次血脂？",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>a: ["每3～5年", "每天"],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>correct: 0</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function showQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (current &gt;= quiz.length) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>endGame();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("question").innerText =</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"第 " + (current + 1) + " 題：" + quiz[current].q;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const answersDiv = document.getElementById("answers");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>answersDiv.innerHTML = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>quiz[current].a.forEach((text, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const btn = document.createElement("button");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.innerText = text;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>btn.onclick = () =&gt; checkAnswer(index);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>answersDiv.appendChild(btn);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function checkAnswer(choice) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (choice === quiz[current].correct) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("答對了！血管更健康 ");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("答錯了！血管受損 ");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>score -= 10;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("score").innerText =</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"血管健康值：" + score;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>current++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function endGame() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let result = "遊戲結束！\n\n";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (score &gt;= 80) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>result += "血管超健康守護者！";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (score &gt;= 60) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>result += " 血管小達人，繼續加油！";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>result += "壞膽固醇來襲，要更注意飲食與生活習慣！";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelector(".game-box").innerHTML =</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"&lt;h2&gt;" + result + "&lt;/h2&gt;&lt;p&gt;記得：少油少糖、多運動、戒菸、定期檢查 &lt;/p&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>showQuestion();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
